@@ -16,17 +16,7 @@ Basic website for user to input a number to convert to a Roman Numeral.
 * For number 5, return V
 * Counts to 8, return VIII
 * For number 9, return IX
-* For numbers 10 through 39, interpret how many factors of ten there are, modulate to process remainder, and implement function interpreting numbers 1-9. For 33 expect XXXIII.
-* for numbers 40 through 89, interpret how many factors of ten there are, modulate to process remainder, and implement function interpreting numbers 1-9. For 44, expect XLIV and for 73, expect LXXIII.
-* For number 10, return X
-* For number 50, return L
-* For number 100, return C
-* For number 500, return D
-* For number 1,000, return M
-* For number greater than 3,999, return an error
-* For numbers 1-5, return a combination of I and V based on the number. Input: 3 Output: III
-* For numbers 6-10, return a combination of I and V based on the number. Input: 7 Output: VII
-* For numbers 11-50, return a combination of X, V and I based on the number. Input: 43 Output
+* For numbers 10 through 99, interpret how many factors of ten there are, modulate to process remainder, and implement function interpreting numbers 1-9. For 33 expect XXXIII.
 
 
 ## Setup/Installation Requirements

@@ -2,12 +2,14 @@
 function romanNumeral(number){
   if (number < 10) {
     return lessThanTen(number);
-  } else if (number < 40){
-    return tenThroughThirtyNine(number);
-  } else if (number < 89) {
-    return thirtynineThroughEightyNine(number);
-  } else if (number < 100){
-    return thirtynineThroughEightyNine(number);
+  } else if (number < 99){
+    return tenThroughNinetyNine(number);
+  } else if (number < 1000){
+    return oneHundredToNineNintyNine(number);
+  } else if (number < 4000){
+    return nineNinetyNineTo3999(number);
+  } else {
+    return "Make sure to enter a numerical value. There aren't Roman Numerals for numbers over 3,999."
   }
 }
 
@@ -34,38 +36,65 @@ function lessThanTen(number){
   }
 }
 
-function tenThroughThirtyNine(number){
-  var tens = number / 10;
-  var remainder = number % 10;
+function tenThroughNinetyNine(number){
+  var tens = Math.floor(number / 10);
   var romanNumeral =[];
+  var remainder = number % 10;
 
-  for (var i = 1; i <= tens; i++){
+  if (number < 40)  {
+    for (var i = 1; i <= tens; i++){
+      romanNumeral.push("X");
+    }
+  } else if (number < 50) {
+    romanNumeral.push("XL");
+  } else if (number < 90){
+    romanNumeral.push("L");
+    for (var i = 1; i <= (tens-5); i++) {
     romanNumeral.push("X");
+    }
+  } else if (number < 100){
+    romanNumeral.push("XC");
   }
   romanNumeral.push(lessThanTen(remainder));
   return romanNumeral.join("");
 }
 
-function thirtynineThroughEightyNine(number){
-  var tens = Math.floor(number / 10);
-  var remainder = number % 10;
-  var romanNumeral =[];
-  var tensToPass = number - 50;
+function oneHundredToNineNintyNine(number){
+  var hundreds = Math.floor(number/100);
+  var romanNumeral = [];
+  var remainder = number % 100;
 
-  if (tens === 4) {
-    romanNumeral.push("XL");
-    romanNumeral.push(lessThanTen(remainder));
-  } else if (tens < 9){
-    romanNumeral.push("L");
-    romanNumeral.push(tenThroughThirtyNine(tensToPass));
-  } else if (tens < 10){
-    romanNumeral.push("XC");
-    romanNumeral.push(lessThanTen(remainder));
+  if (number < 400) {
+    for (var i = 1; i <= hundreds; i++){
+      romanNumeral.push("C");
+    }
+  } else if (number < 500) {
+    romanNumeral.push("CD");
+  } else if (number < 900){
+    romanNumeral.push("D");
+    for (var i = 1; i <= (hundreds-5); i++) {
+    romanNumeral.push("C");
+    }
+  } else if (number < 1000){
+    romanNumeral.push("CM");
   }
+  romanNumeral.push(tenThroughNinetyNine(remainder));
   return romanNumeral.join("");
 }
 
+function nineNinetyNineTo3999(number){
+  var thousands = Math.floor(number/1000);
+  var romanNumeral = [];
+  var remainder = number % 1000;
 
+  if (number < 4000) {
+    for (var i =1; i <= thousands; i++){
+      romanNumeral.push("M");
+    }
+  }
+  romanNumeral.push(oneHundredToNineNintyNine(remainder));
+  return romanNumeral.join("");
+}
 
 
 
