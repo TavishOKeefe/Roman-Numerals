@@ -6,6 +6,8 @@ function romanNumeral(number){
     return tenThroughThirtyNine(number);
   } else if (number < 89) {
     return thirtynineThroughEightyNine(number);
+  } else if (number < 100){
+    return thirtynineThroughEightyNine(number);
   }
 }
 
@@ -53,12 +55,16 @@ function thirtynineThroughEightyNine(number){
   if (tens === 4) {
     romanNumeral.push("XL");
     romanNumeral.push(lessThanTen(remainder));
-  } else {
+  } else if (tens < 9){
     romanNumeral.push("L");
     romanNumeral.push(tenThroughThirtyNine(tensToPass));
+  } else if (tens < 10){
+    romanNumeral.push("XC");
+    romanNumeral.push(lessThanTen(remainder));
   }
   return romanNumeral.join("");
 }
+
 
 
 
